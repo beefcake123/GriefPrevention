@@ -1141,9 +1141,9 @@ class PlayerEventHandler implements Listener
             //allow the access if the entity is in a claim AND the user has access to the claim AND container access is allowed during PvP.
             Claim claim = this.dataStore.getClaimAt(entity.getLocation(), false, null);
             Supplier<String> noContainersReason = claim.checkPermission(player, ClaimPermission.Inventory, event);
-            boolean allowcontainerAccess = claim != null && noContainersReason == null && instance.config_pvp_allowTrustedContainerAccess; 
+            boolean allowContainerAccess = claim != null && noContainersReason == null && instance.config_pvp_allowTrustedContainerAccess; 
             
-            if (!allowcontainerAccess && playerData.inPvpCombat())
+            if (!allowContainerAccess && playerData.inPvpCombat())
             {
                 GriefPrevention.sendMessage(player, TextMode.Err, Messages.PvPNoContainers);
                 event.setCancelled(true);
@@ -1768,10 +1768,8 @@ class PlayerEventHandler implements Listener
                         event.setCancelled(true);
                     }
                 }
-
                 return;
             }
-
             //if he's investigating a claim
             else if (materialInHand == instance.config_claims_investigationTool && hand == EquipmentSlot.HAND)
             {
